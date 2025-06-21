@@ -1,73 +1,16 @@
 import { useState, useRef, useEffect } from "react";
+import { useMusicTracks } from '@/components/hooks/useMusicTracks'
 import { Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-interface MusicTrack {
-  id: string;
-  title: string;
-  artist: string;
-  coverArt: string;
-  audioUrl?: string;
-}
 
 interface MusicCarouselProps {
   className?: string;
 }
 
-const musicTracks: MusicTrack[] = [
-  {
-    id: "1",
-    title: "Whatever You Need",
-    artist: "AJP Jonesy",
-    coverArt:
-      "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&q=80",
-  },
-  {
-    id: "2",
-    title: "German",
-    artist: "AJP Jonesy",
-    coverArt:
-      "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400&q=80",
-  },
-  {
-    id: "3",
-    title: "Head in a Hood",
-    artist: "AJP Jonesy",
-    coverArt:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&q=80",
-  },
-  {
-    id: "4",
-    title: "Money in the Cup",
-    artist: "AJP Jonesy",
-    coverArt:
-      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&q=80",
-  },
-  {
-    id: "5",
-    title: "Hand on Havana",
-    artist: "AJP Jonesy",
-    coverArt:
-      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&q=80",
-  },
-  {
-    id: "6",
-    title: "DM x Jonesy Freestyle",
-    artist: "AJP Jonesy",
-    coverArt:
-      "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=400&q=80",
-  },
-  {
-    id: "7",
-    title: "Boned",
-    artist: "AJP Jonesy",
-    coverArt:
-      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&q=80",
-  },
-];
 
 export function MusicCarousel({ className }: MusicCarouselProps) {
+  const musicTracks = useMusicTracks();
   const [activeTrack, setActiveTrack] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -168,7 +111,7 @@ export function MusicCarousel({ className }: MusicCarouselProps) {
                 <h3 className="font-semibold text-white truncate">
                   {track.title}
                 </h3>
-                <p className="text-gray-400 text-sm">{track.artist}</p>
+                <p className="text-gray-400 text-sm">{track.artists.join(', ')}</p>
               </div>
             </div>
           </div>

@@ -4,10 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/getTrackList.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/getTrackList.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "get:tracks": "node scripts/getTrackList.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -19,6 +22,8 @@
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.517.0",
+    "music-metadata": "^11.3.0",
+    "music-metadata-browser": "^2.5.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.58.1",

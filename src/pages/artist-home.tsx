@@ -1,12 +1,12 @@
 import { ArtistNavbar } from "@/components/artist-navbar";
 import { HeroSection } from "@/components/hero-section";
 import { GallerySection } from "@/components/gallery-section";
-import { MusicPlayer } from "@/components/music-player";
+import { MusicPlayer,  } from "@/components/music-player";
 import { MusicCarousel } from "@/components/music-carousel";
 import { SocialLinks } from "@/components/social-links";
 import { ContactForm } from "@/components/contact-form";
 import { ArtistFooter } from "@/components/artist-footer";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 
 export default function ArtistHome() {
   return (
@@ -27,23 +27,35 @@ export default function ArtistHome() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Music
           </h2>
-
           <div className="max-w-5xl mx-auto mb-12">
             <MusicCarousel />
           </div>
 
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center"> // not sure what this was for tbh
             <Button
               size="lg"
               className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 transition-all duration-300 transform hover:scale-105"
             >
               Stream Music
             </Button>
-          </div>
+          </div> */}
 
           <div className="max-w-3xl mx-auto mt-16">
             <MusicPlayer />
           </div>
+          {/* <audio ref={audioRef} style={{ display: 'none' }} /> */}
+
+          <iframe 
+            className="mx-auto max-w-7xl mt-20"
+            style={{ borderRadius: '12px'}}
+            src="https://open.spotify.com/embed/artist/5HyKIVJmQECHmdiGsjcn59?utm_source=generator"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
         </div>
       </section>
 
