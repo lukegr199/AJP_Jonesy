@@ -1,7 +1,9 @@
+import { useRef } from 'react';
 import { ArtistNavbar } from "@/components/artist-navbar";
 import { HeroSection } from "@/components/hero-section";
 import { GallerySection } from "@/components/gallery-section";
-import { MusicPlayer,  } from "@/components/music-player";
+import { MusicPlayer} from "@/components/music-player";
+import type { MusicPlayerHandle } from '@/components/music-player'
 import { MusicCarousel } from "@/components/music-carousel";
 import { SocialLinks } from "@/components/social-links";
 import { ContactForm } from "@/components/contact-form";
@@ -9,6 +11,7 @@ import { ArtistFooter } from "@/components/artist-footer";
 // import { Button } from "@/components/ui/button";
 
 export default function ArtistHome() {
+  const playerRef = useRef<MusicPlayerHandle>(null);
   return (
     <div className="bg-black text-white">
       <ArtistNavbar />
@@ -28,7 +31,7 @@ export default function ArtistHome() {
             Music
           </h2>
           <div className="max-w-5xl mx-auto mb-12">
-            <MusicCarousel />
+          <MusicCarousel onTrackSelect={(id) => playerRef.current?.playTrackById(id)} />
           </div>
 
           {/* <div className="flex justify-center"> // not sure what this was for tbh
@@ -39,13 +42,13 @@ export default function ArtistHome() {
               Stream Music
             </Button>
           </div> */}
-
-          <div className="max-w-3xl mx-auto mt-16">
-            <MusicPlayer />
-          </div>
           {/* <audio ref={audioRef} style={{ display: 'none' }} /> */}
+          <div className="max-w-3xl mx-auto mt-16">
+            <MusicPlayer ref={playerRef}/>
+          </div>
+          
 
-          <iframe 
+          {/* <iframe 
             className="mx-auto max-w-7xl mt-20"
             style={{ borderRadius: '12px'}}
             src="https://open.spotify.com/embed/artist/5HyKIVJmQECHmdiGsjcn59?utm_source=generator"
@@ -55,7 +58,7 @@ export default function ArtistHome() {
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             allowFullScreen
             loading="lazy"
-          />
+          /> */}
         </div>
       </section>
 

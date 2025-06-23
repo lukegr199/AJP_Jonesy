@@ -16,14 +16,16 @@ export function useMusicTracks() {
     async function fetchTracks() {
       try {
         const res = await fetch('/tracks/tracks.json')
+        if (!res.ok) throw new Error('Failed to load track manifest.')
         const filenames: string[] = await res.json()
 
-        const loaded = await Promise.all(
+        const loaded: DynamicTrack[] = await Promise.all(
           filenames.map(async (name, index) => {
             const audioUrl = `/tracks/${name}`
 
             try {
               const response = await fetch(audioUrl)
+              if (!response.ok) throw new Error(`Failed to fetch ${name}`)
               const blob = await response.blob()
               const metadata = await parseBlob(blob)
 
@@ -32,15 +34,21 @@ export function useMusicTracks() {
                 ? URL.createObjectURL(new Blob([picture.data]))
                 : '/music-fallback.svg'
 
+              const artists = Array.isArray(metadata.common.artists)
+                ? metadata.common.artists
+                : metadata.common.artist
+                ? [metadata.common.artist]
+                : ['Unknown']
+
               return {
                 id: String(index),
                 title: metadata.common.title || name,
-                artists: metadata.common.artists || metadata.common.artists || ['Unknown'],
+                artists,
                 coverArt,
                 audioUrl,
               }
             } catch (err) {
-              console.warn(`⚠️ Failed to parse metadata for ${name}:`, err)
+              console.warn(`⚠️ Could not parse "${name}":`, err)
               return {
                 id: String(index),
                 title: name,

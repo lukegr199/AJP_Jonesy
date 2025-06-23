@@ -6,18 +6,26 @@ import { cn } from "@/lib/utils";
 
 interface MusicCarouselProps {
   className?: string;
+  onTrackSelect?: (id: string) => void;
 }
 
-
-export function MusicCarousel({ className }: MusicCarouselProps) {
+export function MusicCarousel({ className, onTrackSelect }: MusicCarouselProps) {
   const musicTracks = useMusicTracks();
   const [activeTrack, setActiveTrack] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
+  // const togglePlay = (trackId: string) => {
+  //   setActiveTrack(activeTrack === trackId ? null : trackId);
+  // };
   const togglePlay = (trackId: string) => {
-    setActiveTrack(activeTrack === trackId ? null : trackId);
+    const next = activeTrack === trackId ? null : trackId;
+    setActiveTrack(next);
+    if (next && onTrackSelect) {
+      onTrackSelect(next);
+    }
   };
+  
 
   const handleScroll = () => {
     if (!isScrolling) {

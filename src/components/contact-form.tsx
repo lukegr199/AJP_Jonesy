@@ -54,22 +54,44 @@ export function ContactForm() {
 
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
-
-    // Simulate form submission
-    setTimeout(() => {
-      console.log(values);
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. We'll get back to you soon.",
-      });
-      form.reset();
-      setIsSubmitting(false);
-    }, 1500);
+  
+    fetch("https://formsubmit.co/6af3dbe25bd9fc98148f268f0ff3fd11", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Form submission failed");
+        return res.json();
+      })
+      .then(() => {
+        toast({
+          title: "Message sent!",
+          description: "Thank you reaching out. We'll get back to you soon.",
+        });
+        form.reset();
+      })
+      .catch(() => {
+        toast({
+          title: "Oh damn...",
+          description: "Something went wrong sending your message.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => setIsSubmitting(false));
   }
+  
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {/* Hidden inputs required by FormSubmit */}
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+  
         <FormField
           control={form.control}
           name="name"
@@ -87,7 +109,7 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-
+  
         <FormField
           control={form.control}
           name="email"
@@ -105,7 +127,7 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-
+  
         <FormField
           control={form.control}
           name="inquiryType"
@@ -118,7 +140,7 @@ export function ContactForm() {
                     <SelectValue placeholder="Select inquiry type" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className="bg-gray-900 border-white/20 text-white">
                   <SelectItem value="fan">Fan Message</SelectItem>
                   <SelectItem value="booking">Booking Request</SelectItem>
                   <SelectItem value="press">Press Contact</SelectItem>
@@ -129,7 +151,7 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-
+  
         <FormField
           control={form.control}
           name="message"
@@ -147,7 +169,7 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-
+  
         <Button
           type="submit"
           className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
@@ -157,5 +179,5 @@ export function ContactForm() {
         </Button>
       </form>
     </Form>
-  );
+  );  
 }
