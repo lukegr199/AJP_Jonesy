@@ -3,100 +3,7 @@ import { useMediaGallery } from '@/components/hooks/useMediaGallery'
 import type { DynamicGallery } from '@/components/hooks/useMediaGallery'
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
-// interface GalleryItem {
-//   id: string;
-//   type: "image" | "video";
-//   url: string;
-//   thumbnail?: string;
-//   title: string;
-// }
-
-// interface GallerySectionProps {
-//   title?: string;
-//   // items?: GalleryItem[];
-// }
-
-// const defaultGalleryItems: GalleryItem[] = [
-//   {
-//     id: "1",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg20v1rz6st5rkpct199yntreh7btrj1",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&q=80",
-//     title: "Live Performance",
-//   },
-//   {
-//     id: "2",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg2aq6spzjnk7gmvqnpbyc8svd7bttwp",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80",
-//     title: "Studio Session",
-//   },
-//   {
-//     id: "3",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg293652wjtjfar6zx5vm991417btm88",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800&q=80",
-//     title: "Behind the Scenes",
-//   },
-//   {
-//     id: "4",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg205zjkc9rhd9jvvvftgfytr97bta7a",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80",
-//     title: "Music Video Shoot",
-//   },
-//   {
-//     id: "5",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg297d2pjka3j8ap78ferycatx7btzkg",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80",
-//     title: "Concert",
-//   },
-//   {
-//     id: "6",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg29s8wkgagr8qwyy69gke1ke17bt2bs",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80",
-//     title: "Festival Performance",
-//   },
-//   {
-//     id: "7",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg28v5xpcsvwgd8j0e8db2dyah7btx77",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80",
-//     title: "Backstage",
-//   },
-//   {
-//     id: "8",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg28js72aafhs90v4y9hz2zy6x7bvqyn",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800&q=80",
-//     title: "Album Cover Shoot",
-//   },
-//   {
-//     id: "9",
-//     type: "video",
-//     url: "https://storage.googleapis.com/convex-prod-public/kg26rt0vnavwhfmpwqxnxnqnqh7btqnj",
-//     thumbnail:
-//       "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80",
-//     title: "Studio Recording",
-//   },
-// ];
-
-export function GallerySection(
-//   {
-//   title = "",
-//   // items = useMediaGallery(),
-// }: GallerySectionProps
-) {
+export function GallerySection() {
   const galleryItems = useMediaGallery();
   const [selectedItem, setSelectedItem] = useState<DynamicGallery | null>(null);
 
@@ -123,8 +30,8 @@ export function GallerySection(
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                {selectedItem?.type === "video" && (
-                  <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {item?.type === "video" && (
                     <div className="bg-black/50 rounded-full p-4">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -140,8 +47,8 @@ export function GallerySection(
                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                       </svg>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
 
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
