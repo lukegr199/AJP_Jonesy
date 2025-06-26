@@ -22,7 +22,7 @@ try {
   )
 
   await writeFile(outputPath, JSON.stringify(audioFiles, null, 2))
-  console.log(`✅ Generated tracks.json with ${audioFiles.length} entries.`)
+  console.log(`✅ Generated tracks.json with ${audioFiles.length} song file entries found.`)
 } catch (err) {
   console.error('🚨 Failed to generate track list:', err)
 }

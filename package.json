@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/getTrackList.mjs",
+    "predev": "node scripts/getTrackList.mjs && node scripts/getGalleryList.mjs",
     "dev": "vite",
-    "prebuild": "node scripts/getTrackList.mjs",
+    "prebuild": "node scripts/getTrackList.mjs && node scripts/getGalleryList.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "get:tracks": "node scripts/getTrackList.mjs"
+    "get:tracks": "node scripts/getTrackList.mjs",
+    "get:gallery": "node scripts/getGalleryList.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -20,6 +21,7 @@
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-slider": "^1.3.5",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-toast": "^1.2.14",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.517.0",
     "music-metadata": "^11.3.0",

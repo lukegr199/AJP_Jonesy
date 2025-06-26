@@ -13,7 +13,7 @@ interface ArtistNavbarProps {
   logoText?: string;
 }
 
-const defaultNavItems: NavItem[] = [{ label: "Contact", href: "#contact" }];
+const defaultNavItems: NavItem[] = [{ label: "Contact Me", href: "#contact" }];
 
 export function ArtistNavbar({
   items = defaultNavItems,

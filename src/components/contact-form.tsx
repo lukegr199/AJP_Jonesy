@@ -55,7 +55,7 @@ export function ContactForm() {
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
   
-    fetch("https://formsubmit.co/6af3dbe25bd9fc98148f268f0ff3fd11", {
+    fetch("https://formsubmit.co/ajax/6af3dbe25bd9fc98148f268f0ff3fd11", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,14 +70,14 @@ export function ContactForm() {
       .then(() => {
         toast({
           title: "Message sent!",
-          description: "Thank you reaching out. We'll get back to you soon.",
+          description: "Thanks for reaching out. We'll get back to you soon.",
         });
         form.reset();
       })
       .catch(() => {
         toast({
           title: "Oh damn...",
-          description: "Something went wrong sending your message.",
+          description: "Something went wrong sending your message.\n\nPlease instead reach out to my email: email@email.email",
           variant: "destructive",
         });
       })

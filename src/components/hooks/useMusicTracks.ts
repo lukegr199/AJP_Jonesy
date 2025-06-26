@@ -48,7 +48,7 @@ export function useMusicTracks() {
                 audioUrl,
               }
             } catch (err) {
-              console.warn(`⚠️ Could not parse "${name}":`, err)
+              console.warn(`⚠️ Could not parse metadata for "${name}":`, err)
               return {
                 id: String(index),
                 title: name,

@@ -8,12 +8,14 @@ import { MusicCarousel } from "@/components/music-carousel";
 import { SocialLinks } from "@/components/social-links";
 import { ContactForm } from "@/components/contact-form";
 import { ArtistFooter } from "@/components/artist-footer";
+import { Toaster } from "@/components/ui/toaster";
 // import { Button } from "@/components/ui/button";
 
 export default function ArtistHome() {
   const playerRef = useRef<MusicPlayerHandle>(null);
   return (
     <div className="bg-black text-white">
+      <Toaster />
       <ArtistNavbar />
 
       {/* Hero Section */}
