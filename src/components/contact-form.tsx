@@ -55,7 +55,7 @@ export function ContactForm() {
   function onSubmit(values: FormValues) {
     setIsSubmitting(true);
   
-    fetch("https://formsubmit.co/ajax/6af3dbe25bd9fc98148f268f0ff3fd11", {
+    fetch("https://formsubmit.co/ajax/contact@ajpjonesy.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
